@@ -135,11 +135,9 @@ WHERE (orderdate >= '2004-06-01' AND orderdate <='2004-06-30') AND totalamount >
 -- 205226.06
 
 /*
-
 ====================================================================
 NULL VALUES
 =====================================================================
-
 */
 
 
@@ -158,3 +156,42 @@ from "Student"; -- 30.4
 */
 SELECT coalesce(name, 'First Name'), coalesce(lastName, 'Last Name')
 FROM "Student";
+
+
+/*
+====================================================================
+3 VALUED LOGIC  
+=====================================================================
+*/
+
+
+/*
+* DB: Store
+* Table: customers
+* Question: adjust the following query to display the null values as "No Address"
+*/
+SELECT firstname, lastname, address1, coalesce(address2, 'No Address')
+FROM customers;
+
+
+/*
+* DB: Store
+* Table: customers
+* Question: Fix the following query to apply proper 3VL
+*/
+
+SELECT *
+FROM customers
+WHERE address2 IS NOT null;
+
+
+/*
+* DB: Store
+* Table: customers
+* Question: Fix the following query to apply proper 3VL
+*/
+
+
+SELECT coalesce(lastName, 'Empty'), *
+from customers
+where (age IS NULL);
