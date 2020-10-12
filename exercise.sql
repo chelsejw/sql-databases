@@ -38,7 +38,7 @@ FROM towns; --36684
 -- Question 1: How many official languages are there?
 -- Table: countrylanguage
 SELECT COUNT(language)
-FROM countrylanguage; -- 984
+FROM countrylanguage WHERE isofficial = true -- 238
 -- Question 2: What is the average life expectancy in the world?
 -- Table: country
 SELECT AVG(lifeexpectancy)
@@ -48,6 +48,8 @@ FROM country; -- 66.48603611164265
 select code
 from country
 WHERE name='Netherlands'; -- NLD
+
+
 select AVG(population)
 from city
 WHERE countrycode='NLD'; -- 185001.750000000000
