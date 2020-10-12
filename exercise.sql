@@ -1,3 +1,12 @@
+
+/*
+
+====================================================================
+BASIC SELECTS
+=====================================================================
+
+*/
+
 -- BEFORE YOU START
 /*
  * What database should I use for these exercises?
@@ -34,6 +43,17 @@ FROM towns; --36684
  * Name: World
  */
 -- 
+
+/*
+
+====================================================================
+OPERATORS / FUNCTIONS
+=====================================================================
+
+*/
+
+
+
 
 -- Question 1: How many official languages are there?
 -- Table: countrylanguage
@@ -75,3 +95,41 @@ WHERE age > 30 AND age < 50 AND income < 50000;
 select AVG(income)
 from customers
 WHERE age > 20 AND age < 50; --59409.926240780098
+
+
+/*
+
+====================================================================
+OPERATOR PRECEDENCE
+=====================================================================
+
+*/
+
+
+/*
+* DB: Store
+* Table: Customers
+* Question: 
+* Select people either under 30 or over 50 with an income above 50000
+* Include people that are 50
+* that are from either Japan or Australia
+*/
+
+
+select * from customers where (age < 30 OR age >= 50) AND income > 50000 AND (country='Japan' OR country='Australia');
+
+-- 868 rows
+
+
+/*
+* DB: Store
+* Table: Orders
+* Question: 
+* What was our total sales in June of 2004 for orders over 100 dollars?
+*/
+
+select SUM(totalamount)
+from orders
+WHERE (orderdate >= '2004-06-01' AND orderdate <='2004-06-30') AND totalamount > 100;
+
+-- 205226.06
