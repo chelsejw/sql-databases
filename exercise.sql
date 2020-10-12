@@ -55,3 +55,23 @@ from city
 WHERE countrycode='NLD'; -- 185001.750000000000
 
 
+-- How many female customers do we have from the state of Oregon (OR)?
+select count(gender)
+from customers
+where state='OR'; -- 220
+
+-- -Who over the age of 44 has an income of 100 000 or more?
+
+select *
+from customers
+where age=44 AND income >= 100000; --Count: 44
+
+-- -Who between the ages of 30 and 50 has an income of less than 50 000?
+select firstname, lastname, age, income
+from customers
+WHERE age > 30 AND age < 50 AND income < 50000;
+
+-- What is the average income between the ages of 20 and 50?
+select AVG(income)
+from customers
+WHERE age > 20 AND age < 50; --59409.926240780098
