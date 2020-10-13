@@ -282,3 +282,57 @@ where zip::text like '2_1%';
 select coalesce(state, 'No State'), phone
 from customers
 where phone like '302%';
+
+/*
+====================================================================
+DATE TIME
+=====================================================================
+*/
+
+/*
+* DB: Employees
+* Table: employees
+* Question: Get me all the employees above 60, use the appropriate date functions
+*/
+
+select age(birth_date)
+from employees
+where age(birth_date::date) > interval '60 years';
+
+
+/*
+* DB: Employees
+* Table: employees
+* Question: How many employees where hired in February?
+*/
+select count(emp_no)
+from employees
+where extract(month from hire_date)='02'
+
+/*
+* DB: Employees
+* Table: employees
+* Question: How many employees were born in november?
+*/
+
+select count(emp_no)
+from employees
+where extract(month from birth_date)='11'
+/*
+* DB: Employees
+* Table: employees
+* Question: Who is the oldest employee? (Use the analytical function MAX)
+*/
+select min(birth_date)
+from employees; 
+
+select max(age(birth_date)) from employees;
+
+/*
+* DB: Store
+* Table: orders
+* Question: How many orders were made in January 2004?
+*/
+select count(id)
+from orders
+where extract(year from orderdate)='2004'AND extract(month from orderdate)='01';
