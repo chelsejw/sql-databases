@@ -367,3 +367,78 @@ from employees;
 select distinct lifeexpectancy
 from country
 where lifeexpectancy is not null;
+
+/*
+====================================================================
+SORTING
+=====================================================================
+*/
+/*
+* DB: Employees
+* Table: employees
+* Question: Sort employees by first name ascending and last name descending
+*/
+
+select first_name, last_name from employees
+order by first_name, last_name desc;
+
+
+/*
+* DB: Employees
+* Table: employees
+* Question: Sort employees by age
+*/
+
+select first_name, last_name, age(birth_date) from employees
+order by age(birth_date);
+
+
+/*
+* DB: Employees
+* Table: employees
+* Question: Sort employees who's name starts with a "k" by hire_date
+*/
+select first_name, last_name, hire_date
+from employees
+where first_name ilike 'k%'
+order by hire_date;
+
+
+/*
+====================================================================
+INNER JOINS
+=====================================================================
+*/
+
+/*
+* DB: Store
+* Table: orders
+* Question: Get all orders from customers who live in Ohio (OH), New York (NY) or Oregon (OR) state
+* ordered by orderid
+*/
+
+select a.orderid, a.orderdate, b.customerid, b.state
+from orders as a
+    inner join customers as b on a.customerid = b.customerid
+where b.state IN ('NY', 'OH', 'OR')
+order by a.orderid
+
+/*
+* DB: Store
+* Table: products
+* Question: Show me the inventory for each product
+*/
+
+select p.*, i.quan_in_stock
+from inventory as i
+    inner join products as p
+    on i.prod_id = p.prod_id
+/*
+* DB: Employees
+* Table: employees
+* Question: Show me for each employee which department they work in
+*/
+select e.*, d.dept_name
+from employees as e
+    inner join dept_emp as j on e.emp_no = j.emp_no
+    inner join departments d on d.dept_no = j.dept_no
